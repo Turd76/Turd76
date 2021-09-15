@@ -1,11 +1,12 @@
 // =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
+// Email: info@DayTrader.com.com
+// DayTrader.com/templates
 // =============================
 
 import { Injectable } from '@angular/core';
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 import { AccountEndpoint } from './account-endpoint.service';
 import { AuthService } from './auth.service';
@@ -27,8 +28,13 @@ export class AccountService {
 
   constructor(
     private authService: AuthService,
-    private accountEndpoint: AccountEndpoint) {
+    private accountEndpoint: AccountEndpoint,
+    private http: HttpClient) {
 
+  }
+
+  register(user: User) {
+    return this.http.post('${config.apiUrl}/users/register', user);
   }
 
   getUser(userId?: string) {

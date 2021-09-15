@@ -8,6 +8,7 @@ import { UserRegister } from '../../models/user-register.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,6 @@ import { first } from 'rxjs/operators';
 
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  userLogin = new UserRegister();
   isLoading = false;
   formResetToggle = true;
   modalClosedCallback: () => void;
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private alertService: AlertService, private authService: AuthService,
-    private router: Router, private formBuilder: FormBuilder, private configurations: ConfigurationService) {
+    private router: Router, private formBuilder: FormBuilder, private accountService: AccountService, private configurations: ConfigurationService) {
     if (this.authService.currentUser) {
       this.router.navigate(['/']);
     }
@@ -60,16 +60,16 @@ export class RegisterComponent implements OnInit {
         }
 
     this.isLoading = true;
-    this.userService.register(this.registerForm.value)
+    this.accountService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Registration successful', true);
+          //this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']);
         },
         error => {
-          this.alertService.error(error);
-          this.loading = false;
+          //this.alertService.error(error);
+          this.isLoading = false;
         });
     
        

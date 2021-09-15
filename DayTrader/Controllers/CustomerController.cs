@@ -1,6 +1,6 @@
 ﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
+// Email: info@DayTrader.com.com
+// DayTrader.com/templates
 // =============================
 
 using System;
@@ -57,7 +57,7 @@ namespace DayTrader.Controllers
         public async Task<string> Email()
         {
             string recepientName = "QickApp Tester"; //         <===== Put the recepient's name here
-            string recepientEmail = "test@ebenmonney.com"; //   <===== Put the recepient's email here
+            string recepientEmail = "test@DayTrader.com.com"; //   <===== Put the recepient's email here
 
             string message = EmailTemplates.GetTestEmail(recepientName, DateTime.UtcNow);
 

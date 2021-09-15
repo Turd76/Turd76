@@ -1,6 +1,6 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
+﻿// =============================
+// Email: info@DayTrader.com.com
+// DayTrader.com/templates
 // =============================
 
 import { animate, state, style, transition, trigger } from '@angular/animations';

@@ -1,6 +1,6 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
+﻿// =============================
+// Email: info@DayTrader.com.com
+// DayTrader.com/templates
 // =============================
 
 import { Directive, ElementRef, Output, EventEmitter, OnDestroy, NgZone } from '@angular/core';

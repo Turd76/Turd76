@@ -1,6 +1,6 @@
 // =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
+// Email: info@DayTrader.com.com
+// DayTrader.com/templates
 // =============================
 
 import { User } from './user.model';

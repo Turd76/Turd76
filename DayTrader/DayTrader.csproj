@@ -11,9 +11,9 @@
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
     <Description>ASPNET Core 5.0 - Angular 11 startup template for Quick Application Development</Description>
-    <Copyright>Copyright © 2019 www.ebenmonney.com</Copyright>
-    <PackageProjectUrl>https://www.ebenmonney.com/DayTrader</PackageProjectUrl>
-    <Company>EBENMONNEY</Company>
+    <Copyright>Copyright © 2019 DayTrader.com</Copyright>
+    <PackageProjectUrl>https://DayTrader.com/DayTrader</PackageProjectUrl>
+    <Company>DayTrader.com</Company>
     <Version>5.0.0</Version>
   </PropertyGroup>
 

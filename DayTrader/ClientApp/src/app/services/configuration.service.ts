@@ -1,6 +1,6 @@
 ﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
+// Email: info@DayTrader.com.com
+// DayTrader.com/templates
 // =============================
 
 import { Injectable } from '@angular/core';
@@ -106,7 +106,7 @@ export class ConfigurationService {
     public baseUrl = environment.baseUrl || Utilities.baseUrl();
     public tokenUrl = environment.tokenUrl || environment.baseUrl || Utilities.baseUrl();
     public loginUrl = environment.loginUrl;
-    public fallbackBaseUrl = 'https://DayTrader.ebenmonney.com';
+    public fallbackBaseUrl = 'https://DayTrader.DayTrader.com.com';
     // ***End of defaults***
 
     private _language: string = null;
