@@ -1,67 +1,121 @@
-﻿// =============================
-// Email: info@DayTrader.com.com
-// DayTrader.com/templates
-// =============================
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { NgModule, Injectable } from '@angular/core';
-import { Routes, RouterModule, DefaultUrlSerializer, UrlSerializer, UrlTree } from '@angular/router';
+import { FullComponent } from "./layouts/full/full.component";
+import { BlankComponent } from "./layouts/blank/blank.component";
 
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { CustomersComponent } from './components/customers/customers.component';
-import { ProductsComponent } from './components/products/products.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { AboutComponent } from './components/about/about.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './services/auth-guard.service';
-import { Utilities } from './services/utilities';
+export const Approutes: Routes = [
+    {
+        path: "",
+        component: FullComponent,
+        children: [
+            {
+                path: "",
+                redirectTo: "/dashboard/dashboard1",
+                pathMatch: "full",
+            },
+            {
+                path: "dashboard",
+                loadChildren: () =>
+                    import("./dashboards/dashboard.module").then(
+                        (m) => m.DashboardModule
+                    ),
+            },
+            {
+                path: "starter",
+                loadChildren: () =>
+                    import("./starter/starter.module").then(
+                        (m) => m.StarterModule
+                    ),
+            },
+            {
+                path: "component",
+                loadChildren: () =>
+                    import("./component/component.module").then(
+                        (m) => m.ComponentsModule
+                    ),
+            },
+            {
+                path: "cards",
+                loadChildren: () =>
+                    import("./cards/cards.module").then((m) => m.CardsModule),
+            },
+            {
+                path: "icons",
+                loadChildren: () =>
+                    import("./icons/icons.module").then((m) => m.IconsModule),
+            },
+            {
+                path: "forms",
+                loadChildren: () =>
+                    import("./form/forms.module").then((m) => m.FormModule),
+            },
+            {
+                path: "tables",
+                loadChildren: () =>
+                    import("./table/tables.module").then((m) => m.TablesModule),
+            },
+            {
+                path: "charts",
+                loadChildren: () =>
+                    import("./charts/charts.module").then((m) => m.ChartModule),
+            },
+            {
+                path: "widgets",
+                loadChildren: () =>
+                    import("./widgets/widgets.module").then(
+                        (m) => m.WidgetsModule
+                    ),
+            },
+            {
+                path: "ecom",
+                loadChildren: () =>
+                    import("./ecommerce/ecom.module").then((m) => m.EcomModule),
+            },
+            {
+                path: "timeline",
+                loadChildren: () =>
+                    import("./timeline/timeline.module").then(
+                        (m) => m.TimelineModule
+                    ),
+            },
+            {
+                path: "extra-component",
+                loadChildren: () =>
+                    import("./extra-component/extra-component.module").then(
+                        (m) => m.ExtraComponentModule
+                    ),
+            },
+            {
+                path: "apps",
+                loadChildren: () =>
+                    import("./apps/apps.module").then((m) => m.AppsModule),
+            },
 
-
-@Injectable()
-export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
-  parse(url: string): UrlTree {
-    const possibleSeparators = /[?;#]/;
-    const indexOfSeparator = url.search(possibleSeparators);
-    let processedUrl: string;
-
-    if (indexOfSeparator > -1) {
-      const separator = url.charAt(indexOfSeparator);
-      const urlParts = Utilities.splitInTwo(url, separator);
-      urlParts.firstPart = urlParts.firstPart.toLowerCase();
-
-      processedUrl = urlParts.firstPart + separator + urlParts.secondPart;
-    } else {
-      processedUrl = url.toLowerCase();
-    }
-
-    return super.parse(processedUrl);
-  }
-}
-
-
-const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { title: 'Home' } },
-  { path: 'login', component: LoginComponent, data: { title: 'Login' } },
-  { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
-  { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard], data: { title: 'Customers' } },
-  { path: 'products', component: ProductsComponent, canActivate: [AuthGuard], data: { title: 'Products' } },
-  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], data: { title: 'Orders' } },
-  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },
-  { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
-  { path: 'home', redirectTo: '/', pathMatch: 'full' },
-  { path: '**', component: NotFoundComponent, data: { title: 'Page Not Found' } }
+            {
+                path: "sample-pages",
+                loadChildren: () =>
+                    import("./sample-pages/sample-pages.module").then(
+                        (m) => m.SamplePagesModule
+                    ),
+            },
+        ],
+    },
+    {
+        path: "",
+        component: BlankComponent,
+        children: [
+            {
+                path: "authentication",
+                loadChildren: () =>
+                    import("./authentication/authentication.module").then(
+                        (m) => m.AuthenticationModule
+                    ),
+            },
+        ],
+    },
+    {
+        path: "**",
+        redirectTo: "/authentication/404",
+    },
 ];
-
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: [
-    AuthService,
-    AuthGuard,
-    { provide: UrlSerializer, useClass: LowerCaseUrlSerializer }]
-})
-export class AppRoutingModule { }
